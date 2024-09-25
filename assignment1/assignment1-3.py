@@ -7,9 +7,16 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 def distance_difference_squared(guess_location, pole, pole_measurements):
     ### STUDENT CODE START
-    output = 0
+    output = (((guess_location[0] - pole[0])**2) + (guess_location[1] - pole[1])**2)
     ### STUDENT CODE END
-    return output
+    min_distance = None
+    for pole_meas in pole_measurements:
+        if min_distance is None:
+            min_distance = pole_meas - output
+        elif min_distance > pole_meas - output:
+            min_distance = pole_meas - output
+    output -= min_distance
+    return output ** 2
 
 # 1D Example
 # pole = 5
